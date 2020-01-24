@@ -1,4 +1,4 @@
-## Tentative de compilation du moteur ODFAEG [par Laurent Duroisin]
+## Tentative de compilation du moteur ODFAEG sous Windows
 
 ## Comment Compiler
 

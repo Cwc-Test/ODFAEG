@@ -1,4 +1,4 @@
-# Tentative de compilation du moteur ODFAEG [par Laurent Duroisin]
+## Tentative de compilation du moteur ODFAEG [par Laurent Duroisin]
 
 ## Comment Compiler
 
@@ -16,9 +16,9 @@
 
 -Lancer **cwc.exe**, lors de la première utilisation les fichiers **.cwMake** seront associés. *Le menu "Config/Set cwc" permet la même chose.*
 
--Téléchager/Cloner ce [repo](https://github.com/Cwc-Lib/NazaraEngine_LibTester/archive/master.zip). Plusieurs compilation **.cwMake** s'y trouve. Double cliquer sur celle voulu, les *Toolchains* et *Libs* seront téléchargé automatiquement, puis compilé.
+-Téléchager/Cloner ce repo. Plusieurs compilation **.cwMake** s'y trouve (dans le dossier 'cwc'). Double cliquer sur celle voulu, les *Toolchains* et *Libs* seront téléchargé automatiquement, puis compilé.
 
-
+***
 ***
 ***
 

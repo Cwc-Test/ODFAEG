@@ -25,10 +25,16 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/GLExtensions.hpp>
-#include <SFML/System/Err.hpp>
+#include "../../../include/odfaeg/Graphics/glExtensions.hpp"
+#include "../../../include/odfaeg/Window/context.hpp"
+#include <iostream>
+#if !defined(GL_MAJOR_VERSION)
+    #define GL_MAJOR_VERSION 0x821B
+#endif
 
-
+#if !defined(GL_MINOR_VERSION)
+    #define GL_MINOR_VERSION 0x821C
+#endif
 namespace odfaeg
 {
 namespace graphic {
@@ -37,18 +43,44 @@ namespace priv
 ////////////////////////////////////////////////////////////
 void ensureExtensionsInit()
 {
-#if !defined(SFML_OPENGL_ES)
+#if !defined(ODFAEG_OPENGL_ES)
     static bool initialized = false;
     if (!initialized)
     {
-        GLenum status = glewInit();
-        if (status == GLEW_OK)
+        initialized = true;
+
+        sfogl_LoadFunctions();
+
+        // Retrieve the context version number
+        int majorVersion = 0;
+        int minorVersion = 0;
+
+        // Try the new way first
+        glGetIntegerv(GL_MAJOR_VERSION, &majorVersion);
+        glGetIntegerv(GL_MINOR_VERSION, &minorVersion);
+
+        if (glGetError() == GL_INVALID_ENUM)
         {
-            initialized = true;
+            // Try the old way
+            const GLubyte* version = glGetString(GL_VERSION);
+            if (version)
+            {
+                // The beginning of the returned string is "major.minor" (this is standard)
+                majorVersion = version[0] - '0';
+                minorVersion = version[2] - '0';
+            }
+            else
+            {
+                // Can't get the version number, assume 1.1
+                majorVersion = 1;
+                minorVersion = 1;
+            }
         }
-        else
+
+        if ((majorVersion < 1) || ((majorVersion == 1) && (minorVersion < 1)))
         {
-            err() << "Failed to initialize GLEW, " << glewGetErrorString(status) << std::endl;
+            std::cerr<< "sfml-graphics requires support for OpenGL 1.1 or greater" << std::endl;
+            std::cerr << "Ensure that hardware acceleration is enabled if available" << std::endl;
         }
     }
 #endif

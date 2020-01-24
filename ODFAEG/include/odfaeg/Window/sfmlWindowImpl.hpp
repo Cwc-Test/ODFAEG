@@ -21,6 +21,8 @@ namespace odfaeg {
             sf::Vector2u getSize() const;
             void setSize(const sf::Vector2u& size);
             void setTitle(const sf::String& title);
+			bool filterEvent(const IEvent& event);
+			
             ////////////////////////////////////////////////////////////
             /// \brief Change the window's icon
             ///

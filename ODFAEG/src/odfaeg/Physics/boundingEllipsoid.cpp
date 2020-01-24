@@ -24,8 +24,8 @@ namespace odfaeg {
             //We do the same for check the collision with a circle, except taht the circle have only 1 ray.
             //The equation for the circle is then a bit different.
             math::Ray r(bs.getCenter(), center);
-            math::Vec3f near, far;
-            if (!intersectsWhere(r, near, far, info))
+            math::Vec3f _near, _far;
+            if (!intersectsWhere(r, _near, _far, info))
                 return false;
             math::Vec3f d = far - center;
             return (center.computeDistSquared(bs.getCenter()) - bs.getRadius() * bs.getRadius() - d.magnSquared()) <= 0;
@@ -92,7 +92,7 @@ namespace odfaeg {
                 return false;
             return false;
         }
-        bool BoundingEllipsoid::intersectsWhere(math::Ray& r, math::Vec3f& near, math::Vec3f& far, CollisionResultSet::Info& info) {
+        bool BoundingEllipsoid::intersectsWhere(math::Ray& r, math::Vec3f& _near, math::Vec3f& _far, CollisionResultSet::Info& info) {
             math::Matrix4f transform = scale * rotation * translation;
             math::Matrix4f invTransform = transform.inverse();
             math::Vec3f orig = invTransform * r.getOrig();
@@ -102,8 +102,8 @@ namespace odfaeg {
             BoundingSphere bs(math::Vec3f(0, 0, 0), 1);
             if (!bs.intersectsWhere(tRay, i1, i2, info))
                 return false;
-            near = transform * i1;
-            far = transform * i2;
+            _near = transform * i1;
+            _far = transform * i2;
             return true;
         }
         bool BoundingEllipsoid::isPointInside (math::Vec3f point) {

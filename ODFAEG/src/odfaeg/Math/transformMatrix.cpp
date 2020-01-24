@@ -2,6 +2,7 @@
 
 #include "../../../include/odfaeg/Math/transformMatrix.h"
 #include "../../../include/odfaeg/Math/computer.h"
+#include "../../../include/odfaeg/BoundingAreas/orientedBoundingRect.h"
 namespace odfaeg {
 TransformMatrix::TransformMatrix() {
     t3d = Vec3f(0, 0, 0);
@@ -217,6 +218,7 @@ Vec2f TransformMatrix::inverseTransform (const Vec2f vec2) {
 void TransformMatrix::combine(Matrix3f other) {
     matrix3f =  matrix3f * other;
 }
+/*
 BoundingRectangle TransformMatrix::transformRect (BoundingRectangle br) {
     std::array<Vec2f, 4> points;
     points[0] = br.getPosition();
@@ -270,6 +272,6 @@ AABB TransformMatrix::transformAABB (AABB aabb) {
     std::array<std::array<float, 3>, 2> store;
     store = Computer::getExtends(points);
     return AABB(Vec3f(store[0][0], store[1][0],store[2][0]), store[0][1] - store[0][0],store[1][1] - store[1][0], store[2][1] - store[2][0]);
-}
+}*/
 }
 

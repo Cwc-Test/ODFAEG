@@ -17,6 +17,10 @@ namespace odfaeg {
         bool SFMLWindowImpl::isOpen() const {
             return sf::Window::isOpen();
         }
+		bool SFMLWindowImpl::filterEvent(const IEvent& event){
+		    return true;
+		}
+		
         bool SFMLWindowImpl::pollEvent(IEvent& event) {
             sf::Event sfevent;
             if (sf::Window::pollEvent(sfevent)) {

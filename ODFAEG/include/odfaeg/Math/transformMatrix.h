@@ -8,6 +8,7 @@
 #include "maths.h"
 #include "../BoundingAreas/axisAlignedBoundingBox.h"
 #include "../BoundingAreas/boundingRectangle.h"
+#include "../Core/serialization.h"
 #include <SFML/Graphics.hpp>
 /**
   *\namespace odfaeg
@@ -28,7 +29,7 @@ namespace odfaeg
           * The construction of the transformations matrix depend on the translation, scale, rotation and origin provided.
           * The matrix is constructed only when it's necessary.
           */
-        class TransformMatrix : public Serializer<TransformMatrix>
+        class TransformMatrix : public core::Serializer<TransformMatrix>
         {
         private :
             Matrix4f matrix4f; /**< the 3D transformation matrix*/
@@ -191,6 +192,7 @@ namespace odfaeg
             *  \brief recompute the bounding rectangle when an entity is transformed.
             *  \return the resulting bounding rectangle.
             */
+			/*
             Bounding transformRect (BoundingRectangle rect);
             bool operator== (const TransformMatrix& other);
             template <typename Archive>
@@ -202,6 +204,7 @@ namespace odfaeg
                 ar | r3dAxis;
                 ar & r3d;
             }
+			*/
         };
     }
 }

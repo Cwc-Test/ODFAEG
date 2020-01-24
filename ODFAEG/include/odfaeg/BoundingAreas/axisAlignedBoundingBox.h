@@ -2,6 +2,7 @@
 #define AXIS_ALIGNED_BOUNDING_BOX
 #include "../Math/vec4.h"
 namespace odfaeg {
+using namespace math;
 class AABB {
 public :
     AABB() {

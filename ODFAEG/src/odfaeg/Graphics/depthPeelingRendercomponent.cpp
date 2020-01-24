@@ -1,5 +1,6 @@
 #include "../../../include/odfaeg/Graphics/depthPeelingRenderComponent.hpp"
 #include "glCheck.h"
+#define GL_ATOMIC_COUNTER_BUFFER 0x92C0
 #include <memory.h>
 using namespace sf;
 using namespace std;
